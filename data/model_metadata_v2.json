@@ -1,0 +1,1 @@
+{"features": ["rolling_avg_5", "rolling_avg_10", "rolling_sr_5", "rolling_sr_10", "innings_count", "career_avg", "consistency", "bat_pos", "innings", "is_playoff", "toss_bat_first", "venue_avg", "vs_team_avg", "venue_overall_avg", "is_home", "opp_bowling_econ", "opp_bowling_sr"], "mae": 16.29}
