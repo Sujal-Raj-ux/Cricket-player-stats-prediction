@@ -9,8 +9,8 @@ router = APIRouter()
 @router.post("/predict", response_model=PredictResponse)
 def predict_runs(body: PredictRequest):
     """
-    Run the loaded XGBoost model on the provided feature row.
-    Placeholder features until your Colab pipeline is wired.
+    Run the loaded model on a single feature row. Keys in `features` must match
+    `data/model_metadata_v2.json` (see OpenAPI **Example Value** for a full sample).
     """
     if not model_service.is_ready():
         raise HTTPException(
