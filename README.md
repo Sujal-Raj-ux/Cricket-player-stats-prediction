@@ -98,11 +98,6 @@ scripts/       # e.g. import CSV into Postgres
 supabase/      # SQL migrations + Supabase notes
 ```
 
-## GitHub
-
-- Commit **`.env.example`** and **not** `.env`.  
-- `data/` files here are small enough for normal GitHub; very large artifacts should use [Git LFS](https://git-lfs.com/) or external storage.
-
 ## License
 
 Add a `LICENSE` file if you want an explicit open-source license.
