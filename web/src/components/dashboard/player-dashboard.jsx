@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
-import { fetchPlayerDashboard, fetchPlayerList, getApiBase } from "@/lib/api";
+import { fetchPlayerDashboard, fetchPlayerList, getApiBase, isLocalhostApiUrl } from "@/lib/api";
 import { PLAYERS } from "@/lib/mock-data";
 import { OutlookPanel } from "./outlook-panel";
 import { OutcomesStrip } from "./outcomes-strip";
@@ -184,8 +184,22 @@ export function PlayerDashboard() {
           <p className="font-medium text-[var(--accent-dim)]">Using demo data</p>
           <p className="mt-1 text-[var(--muted)]">
             Could not load <code className="text-xs text-[var(--foreground)]">{getApiBase()}/api/players</code>
-            — {listNotice.message}. Check that the API is running, <code className="text-xs">CORS_ORIGINS</code>{" "}
-            includes this site, and <code className="text-xs">VITE_API_URL</code> is correct after deploy.
+            — {listNotice.message}.{" "}
+            {typeof window !== "undefined" &&
+            isLocalhostApiUrl() &&
+            !/^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname) ? (
+              <span className="block font-medium text-[var(--foreground)]">
+                This site is not on localhost, but the UI was built to call 127.0.0.1. In Render (or your host) set
+                environment variable <code className="text-xs">VITE_API_URL</code> to your public API (https://…onrender.com)
+                and <strong>redeploy</strong> the static site. Then set <code className="text-xs">CORS_ORIGINS</code> on the API
+                to this page&apos;s origin.
+              </span>
+            ) : (
+              <>
+                Check that the API is running, <code className="text-xs">CORS_ORIGINS</code> includes this site, and{" "}
+                <code className="text-xs">VITE_API_URL</code> is correct for the build that was deployed.
+              </>
+            )}
           </p>
         </div>
       ) : null}

@@ -73,6 +73,15 @@ npm run build
 npm run preview   # optional local preview of dist/
 ```
 
+### Deploy the UI (Render / Netlify / etc.)
+
+Vite bakes the API URL **at build time**. If you do **not** set this, the bundle calls **`http://127.0.0.1:8000`**, which **fails** for users on a public URL (“Failed to fetch”).
+
+1. In your **static site** service, add a **build** environment variable:  
+   **`VITE_API_URL`** = `https://<your-api-service>.onrender.com` (no trailing slash, use **https**).
+2. Trigger a **new deploy** so `npm run build` runs again with that variable.
+3. On the **API** (Render Web Service), set **`CORS_ORIGINS`** to your static site’s origin, e.g. `https://<your-static-site>.onrender.com` (comma-separated if multiple; no path).
+
 ## Database (Supabase / Postgres)
 
 Full steps: **[`supabase/README.md`](supabase/README.md)** (migrations, pooler URI, loading CSV with `scripts/import_csv_to_supabase.py`).

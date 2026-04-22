@@ -7,6 +7,11 @@ export function getApiBase() {
   return API_BASE;
 }
 
+/** True if the build still points at localhost (common if VITE_API_URL was not set on the host that ran `npm run build`). */
+export function isLocalhostApiUrl() {
+  return /127\.0\.0\.1|localhost/i.test(API_BASE);
+}
+
 /** @param {Response} res */
 async function errorDetail(res) {
   try {
