@@ -1,6 +1,7 @@
 # IPL player outlook
 
 Web dashboard for IPL batting form, innings history, and a simple **next-inning runs outlook**, backed by a **FastAPI** service and your dataset (CSV or **Postgres** via Supabase).
+https://cricket-player-stats-prediction-1.onrender.com/ 
 
 ## Stack
 
